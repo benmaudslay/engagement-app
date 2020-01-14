@@ -31,14 +31,6 @@ export const NavigationPlus = () => {
         </Link>
       </li>
       <li>
-        <Link
-          to={ROUTES.LANDING}
-          onMouseOver={() => handleHover(ROUTES.LANDING)}
-        >
-          Landing
-        </Link>
-      </li>
-      <li>
         <Link to={ROUTES.HOME} onMouseOver={() => handleHover(ROUTES.HOME)}>
           Home
         </Link>
@@ -77,9 +69,6 @@ const Navigation = () => (
 const NavigationAuth = ({ authUser }) => (
   <NavBar>
     <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
       <Link to={ROUTES.HOME}>Home</Link>
     </li>
     <li>
@@ -101,9 +90,6 @@ const NavigationAuth = ({ authUser }) => (
 
 const NavigationNonAuth = () => (
   <NavBar>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
     <li>
       <Link to={ROUTES.SIGN_IN}>Sign In</Link>
     </li>
