@@ -101,6 +101,7 @@ export default Navigation
 const NavBar = styled.nav`
   display: flex;
   flex-direction: row;
+  box-shadow: 0 2px 0 #434443;
   padding: 10px 10px 0px 10px;
 
   li {

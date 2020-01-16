@@ -79,6 +79,12 @@ class Firebase {
   message = uid => this.db.ref(`messages/${uid}`)
 
   messages = () => this.db.ref("messages")
+
+  // *** Help Board API *** //
+  // TO DO - Not linked to anything yet
+  request = uid => this.db.ref(`requests/${uid}`)
+
+  requests = () => this.db.ref("requests")
 }
 
 export default Firebase

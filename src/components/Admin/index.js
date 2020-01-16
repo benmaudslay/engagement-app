@@ -129,7 +129,7 @@ class UserItemBase extends Component {
     const { user, loading } = this.state
 
     return (
-      <div>
+      <div className="page">
         {/* <h2>User ({this.props.match.params.id})</h2> */}
         <h2>User ({user.username})</h2>
         {loading && <div>Loading ...</div>}

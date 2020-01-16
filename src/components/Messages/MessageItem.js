@@ -5,7 +5,10 @@ export class MessageItem extends Component {
     super(props)
     this.state = {
       editMode: false,
-      editText: this.props.message.text
+      editText: this.props.message.text,
+      editWho: this.props.message.text.who,
+      editPledger: this.props.message.text.pledger,
+      editWhat: this.props.message.text.what
     }
   }
 
@@ -17,34 +20,60 @@ export class MessageItem extends Component {
   }
 
   onChangeEditText = event => {
-    this.setState({ editText: event.target.value })
+    this.setState({ [event.target.name]: event.target.value })
   }
 
   onSaveEditText = () => {
-    this.props.onEditMessage(this.props.message, this.state.editText)
+    let edited = {
+      what: this.state.editWhat,
+      who: this.state.editWho,
+      pledger: this.state.editPledger
+    }
+
+    this.props.onEditMessage(this.props.message, edited)
     this.setState({ editMode: false })
   }
 
   render() {
     const { message, onRemoveMessage, editRight } = this.props
-    const { editMode, editText } = this.state
+    const { editMode, editText, editWhat, editWho, editPledger } = this.state
 
     return (
-      <li>
+      <li className="card">
         {editMode ? (
-          <input
-            type="text"
-            value={editText}
-            onChange={this.onChangeEditText}
-          />
+          <form>
+            <input
+              type="text"
+              name="editWhat"
+              value={editWhat}
+              onChange={this.onChangeEditText}
+            />
+            <input
+              type="text"
+              name="editWho"
+              value={editWho}
+              onChange={this.onChangeEditText}
+            />
+            <input
+              type="text"
+              name="editPledger"
+              value={editPledger}
+              onChange={this.onChangeEditText}
+            />
+          </form>
         ) : (
-          <p>
-            <strong>{message.user.username || message.user.userId}</strong>
-            {message.editedAt && <span> (Edited)</span>}
-            :
-            <br />
-            {message.text}
-          </p>
+          <>
+            <div className="card-user card-child">
+              <strong>{message.user.username || message.user.userId}</strong>
+              {message.editedAt && <span> (Edited)</span>}
+            </div>
+
+            <div className="card-message card-child">
+              <p>What: {message.text.what}</p>
+              <p>Who: {message.text.who}</p>
+              <p>Pledger: {message.text.pledger}</p>
+            </div>
+          </>
         )}
 
         {editRight && (

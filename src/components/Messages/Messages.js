@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 
+import "./messages.css"
 import { withFirebase } from "../Firebase"
 import { MessageList } from "./MessageList"
 

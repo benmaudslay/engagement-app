@@ -7,33 +7,62 @@ import { Messages } from "../Messages"
 
 class PostPage extends Component {
   state = {
-    text: ""
+    text: "",
+    what: "",
+    who: "",
+    pledger: ""
   }
 
   onCreateMessage = (event, authUser) => {
     this.props.firebase.messages().push({
-      text: this.state.text,
+      text: {
+        what: this.state.what,
+        who: this.state.who,
+        pledger: this.state.pledger
+      },
       userId: authUser.uid,
       createdAt: this.props.firebase.serverValue.TIMESTAMP
     })
 
+    console.log("who: " + this.state.who)
+    console.log("what: " + this.state.what)
     this.setState({ text: "" })
 
     event.preventDefault()
   }
 
   onChangeText = event => {
-    this.setState({ text: event.target.value })
+    this.setState({ [event.target.name]: event.target.value })
   }
 
   render() {
-    const { text } = this.state
+    const { text, who, what, pledger } = this.state
     return (
       <AuthUserContext.Consumer>
         {authUser => (
-          <div>
+          <div className="page">
             <form onSubmit={event => this.onCreateMessage(event, authUser)}>
-              <input type="text" value={text} onChange={this.onChangeText} />
+              <label>What have you been doing?</label>
+              <input
+                type="text"
+                name="what"
+                value={what}
+                onChange={this.onChangeText}
+              />
+              <label>Who have you met with?</label>
+              <input
+                type="text"
+                name="who"
+                value={who}
+                onChange={this.onChangeText}
+              />
+              <label>Which pledgers have been in this week?</label>
+              <input
+                type="text"
+                name="pledger"
+                value={pledger}
+                onChange={this.onChangeText}
+              />
               <button type="submit">Send</button>
             </form>
             <Messages showOwn={authUser && authUser.uid} />

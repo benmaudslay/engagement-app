@@ -8,8 +8,8 @@ import { Messages } from "../Messages"
 class HomePage extends Component {
   render() {
     return (
-      <div>
-        <h1>Home Page</h1>
+      <div className="page">
+        <h1>Activity Feed</h1>
         <Messages />
       </div>
     )

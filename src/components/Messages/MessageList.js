@@ -9,14 +9,15 @@ export const MessageList = ({
   editRight
 }) => (
   <ul>
-    {messages.map(message => (
-      <MessageItem
-        key={message.uid}
-        message={message}
-        onEditMessage={onEditMessage}
-        onRemoveMessage={onRemoveMessage}
-        editRight={editRight}
-      />
-    ))}
+    {messages &&
+      messages.map(message => (
+        <MessageItem
+          key={message.uid}
+          message={message}
+          onEditMessage={onEditMessage}
+          onRemoveMessage={onRemoveMessage}
+          editRight={editRight}
+        />
+      ))}
   </ul>
 )
